@@ -6,6 +6,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/recommended",
+
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
@@ -15,6 +16,7 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "react/no-unknown-property": ['error', { ignore: ['css'] }],
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -40,6 +42,10 @@ module.exports = {
       {
         selector: "property",
         format: ["camelCase"],
+        filter: {
+          regex: "^[a-z]+([A-Z][a-z]+)*$",
+          match: true
+        }
       },
       {
         selector: "interface",
