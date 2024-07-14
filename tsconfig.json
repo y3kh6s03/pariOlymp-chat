@@ -13,6 +13,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "jsx": "react-jsx"
   }
 }
