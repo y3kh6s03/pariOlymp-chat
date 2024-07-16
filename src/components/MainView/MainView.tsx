@@ -23,6 +23,7 @@ const container = css({
 export default function MainView() {
   return (
     <div css={container}>
+      <h4>Main開発からブランチ切り替えのテスト</h4>
       <span />
       <Sidebar />
     </div>
