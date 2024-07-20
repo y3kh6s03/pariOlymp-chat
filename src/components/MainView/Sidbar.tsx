@@ -1,4 +1,6 @@
 import { css } from "@emotion/react";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { auth } from "../../firabase";
 
 const title = css({
   font: "bold 1.3rem Revalia",
@@ -33,6 +35,9 @@ const sidebar = css({
     },
   },
 });
+const logout = css({
+  color: "white",
+});
 
 export default function Sidebar() {
   const olympicSports = [
@@ -54,6 +59,7 @@ export default function Sidebar() {
           </a>
         );
       })}
+      <LogoutIcon css={logout} onClick={() => auth.signOut()} />
     </div>
   );
 }
