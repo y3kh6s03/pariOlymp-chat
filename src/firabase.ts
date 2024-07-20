@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore/lite";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCsFGcXWiGdZbS86oOB20fRBa83kwqjl2Q",
-  authDomain: "parisolymp-chat.firebaseapp.com",
-  projectId: "parisolymp-chat",
-  storageBucket: "parisolymp-chat.appspot.com",
-  messagingSenderId: "534180440999",
-  appId: "1:534180440999:web:7849e816504e2eaa496482",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 const app = initializeApp(firebaseConfig);

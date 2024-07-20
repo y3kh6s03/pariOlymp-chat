@@ -17,7 +17,6 @@ const container = css({
 
 function App() {
   const { user } = useAppSelector((state) => state.user);
-  console.log(user);
   const dispatch = useAppDispatch();
   useEffect(() => {
     auth.onAuthStateChanged((loginUser) => {
@@ -34,7 +33,7 @@ function App() {
         dispatch(logout());
       }
     });
-  }, []);
+  }, [dispatch]);
   return (
     <>
       {user !== null ? (
