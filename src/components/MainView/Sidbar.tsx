@@ -50,7 +50,7 @@ export default function Sidebar() {
       {olympicSports.map((sport, index) => {
         return (
           <a key={index} href="/">
-            <img src={`@/../public/${sport}.png`} alt="" />
+            <img src={`/${sport}.png`} alt="" />
           </a>
         );
       })}
