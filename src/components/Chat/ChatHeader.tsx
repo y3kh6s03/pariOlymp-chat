@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { useAppSelector } from "../../store/hooks";
 
 const container = css({
   width: "100%",
@@ -10,11 +11,12 @@ const container = css({
 });
 
 export default function ChatHeader() {
+  const channelInfo = useAppSelector((state) => state.channel);
   return (
     <div css={container}>
       <h3>
         <span>#</span>
-        3×3
+        {channelInfo.channelName}
       </h3>
     </div>
   );
