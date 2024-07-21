@@ -1,7 +1,9 @@
 import { css } from "@emotion/react";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { auth } from "../../firabase";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { auth, db } from "../../firabase";
 import useChannels from "../../hooks/useChannels";
+import { addDoc, collection } from "firebase/firestore";
 
 const title = css({
   font: "bold 1.3rem Revalia",
@@ -41,8 +43,22 @@ const logout = css({
   color: "white",
 });
 
+const addIcon = css({
+  color: "white",
+  marginBottom: "5rem",
+});
+
 export default function Sidebar() {
   const channels = useChannels();
+
+  const handleAddChannel = async () => {
+    const addChannelName = prompt("新しいチャンネルを作成します。");
+    if (addChannelName) {
+      await addDoc(collection(db, "channels"), {
+        channelName: addChannelName,
+      });
+    }
+  };
   // const olympicSports = [
   //   "3on3",
   //   "basket",
@@ -52,21 +68,6 @@ export default function Sidebar() {
   //   "swim",
   //   "tennis",
   // ];
-
-  // const q = query(collection(db, "channels"));
-
-  // useEffect(() => {
-  //   onSnapshot(q, (querySnapShot) => {
-  //     const channelsResults: Channels[] = [];
-  //     querySnapShot.docs.forEach((doc) => {
-  //       channelsResults.push({
-  //         id: doc.id,
-  //         channel: doc.data()
-  //       })
-  //     })
-  //     setChannels([...channelsResults])
-  //   })
-  // }, [])
 
   return (
     <div css={sidebar}>
@@ -78,6 +79,7 @@ export default function Sidebar() {
           </a>
         );
       })}
+      <AddCircleOutlineIcon css={addIcon} onClick={() => handleAddChannel()} />
       <LogoutIcon css={logout} onClick={() => auth.signOut()} />
     </div>
   );
