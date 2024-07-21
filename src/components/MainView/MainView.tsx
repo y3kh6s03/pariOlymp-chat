@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 import Sidebar from "./Sidbar";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallBack from "../Error/ErrorFallBack";
 
 const container = css({
   flex: 2,
@@ -23,9 +25,10 @@ const container = css({
 export default function MainView() {
   return (
     <div css={container}>
-      <h4>Main開発からブランチ切り替えのテスト</h4>
       <span />
-      <Sidebar />
+      <ErrorBoundary FallbackComponent={ErrorFallBack}>
+        <Sidebar />
+      </ErrorBoundary>
     </div>
   );
 }

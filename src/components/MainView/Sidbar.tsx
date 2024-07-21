@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { auth } from "../../firabase";
+import useChannels from "../../hooks/useChannels";
 
 const title = css({
   font: "bold 1.3rem Revalia",
@@ -35,27 +36,45 @@ const sidebar = css({
     },
   },
 });
+
 const logout = css({
   color: "white",
 });
 
 export default function Sidebar() {
-  const olympicSports = [
-    "3on3",
-    "basket",
-    "boxing",
-    "judo",
-    "soccer",
-    "swim",
-    "tennis",
-  ];
+  const channels = useChannels();
+  // const olympicSports = [
+  //   "3on3",
+  //   "basket",
+  //   "boxing",
+  //   "judo",
+  //   "soccer",
+  //   "swim",
+  //   "tennis",
+  // ];
+
+  // const q = query(collection(db, "channels"));
+
+  // useEffect(() => {
+  //   onSnapshot(q, (querySnapShot) => {
+  //     const channelsResults: Channels[] = [];
+  //     querySnapShot.docs.forEach((doc) => {
+  //       channelsResults.push({
+  //         id: doc.id,
+  //         channel: doc.data()
+  //       })
+  //     })
+  //     setChannels([...channelsResults])
+  //   })
+  // }, [])
+
   return (
     <div css={sidebar}>
       <h1 css={title}>ParisOlympChat</h1>
-      {olympicSports.map((sport, index) => {
+      {channels.map((channel) => {
         return (
-          <a key={index} href="/">
-            <img src={`/${sport}.png`} alt="" />
+          <a key={channel.id} href="/">
+            <img src={`/${channel.channel.channelName}.png`} alt="icons" />
           </a>
         );
       })}
