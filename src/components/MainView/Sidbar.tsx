@@ -4,6 +4,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { auth, db } from "../../firabase";
 import useChannels from "../../hooks/useChannels";
 import { addDoc, collection } from "firebase/firestore";
+import { useAppDispatch } from "../../store/hooks";
+import { setChannelInfo } from "../../store/slice/ChannelSlice";
 
 const title = css({
   font: "bold 1.3rem Revalia",
@@ -25,16 +27,17 @@ const sidebar = css({
   left: 0,
   zIndex: 9999,
   title,
-  a: {
+  button: {
     width: "3rem",
     aspectRatio: "1/1",
     marginBottom: "1rem",
+    borderRadius: "50%",
+    overflow: "hidden",
 
     img: {
       width: "100%",
       height: "100%",
       objectFit: "cover",
-      borderRadius: "50%",
     },
   },
 });
@@ -69,14 +72,24 @@ export default function Sidebar() {
   //   "tennis",
   // ];
 
+  const dispatch = useAppDispatch();
+  const handleChannelIcon = (channelId: string, channelName: string) => {
+    dispatch(setChannelInfo({ channelId, channelName }));
+  };
+
   return (
     <div css={sidebar}>
       <h1 css={title}>ParisOlympChat</h1>
       {channels.map((channel) => {
         return (
-          <a key={channel.id} href="/">
+          <button
+            key={channel.id}
+            onClick={() =>
+              handleChannelIcon(channel.id, channel.channel.channelName)
+            }
+          >
             <img src={`/${channel.channel.channelName}.png`} alt="icons" />
-          </a>
+          </button>
         );
       })}
       <AddCircleOutlineIcon css={addIcon} onClick={() => handleAddChannel()} />
